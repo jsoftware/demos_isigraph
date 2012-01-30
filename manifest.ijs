@@ -15,7 +15,7 @@ based on work done by Clifford Reiter.
 See wiki page http://www.jsoftware.com/jwiki/Addons/gui/gtkwd for installation.
 )
 
-VERSION=: ''
+VERSION=: '1.0.0'
 
 RELEASE=: 'j701'
 
