@@ -119,6 +119,8 @@ isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   isdemo_run1 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 end.
+glsel 'g'
+glpaint''
 )
 
 NB. =========================================================
