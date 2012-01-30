@@ -11,40 +11,38 @@ require 'gui/gtkwd'
 
 Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
-
-See wiki page http://www.jsoftware.com/jwiki/Addons/gui/gtkwd for installation.
 )
 
-VERSION=: '1.0.0'
+VERSION=: '1.0.1'
 
 RELEASE=: 'j701'
 
 FILES=: 0 : 0
-evolute1
-evolute2
-frieze1
-ifs1
-ifs2
-iscolor
-isdemo
-isedit
-isview
-koch
-paint
-plasma1
-polygon
-polyhedr
-power
-siercar1
-siercar2
-siertri1
-siertri2
-siertri3
-siertri4
-sines
-solid
-smesser
-spinner
-spirals
-title
+evolute1.ijs
+evolute2.ijs
+frieze1.ijs
+ifs1.ijs
+ifs2.ijs
+iscolor.ijs
+isdemo.ijs
+isedit.ijs
+isview.ijs
+koch.ijs
+paint.ijs
+plasma1.ijs
+polygon.ijs
+polyhedr.ijs
+power.ijs
+siercar1.ijs
+siercar2.ijs
+siertri1.ijs
+siertri2.ijs
+siertri3.ijs
+siertri4.ijs
+sines.ijs
+solid.ijs
+smesser.ijs
+spinner.ijs
+spirals.ijs
+title.ijs
 )
