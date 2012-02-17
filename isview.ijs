@@ -4,8 +4,14 @@ coclass 'jigdemo'
 coinsert 'jgl2'
 
 require 'gui/gtkwd/wdviewmat'
-require '~addons/general/misc/evolute.ijs'
+NB. require '~addons/general/misc/evolute.ijs'
 require '~addons/demos/isigraph/iscolor.ijs'
+
+NB. include evolute in-line
+e0=. }: @ (2: # >:@i.)
+e1=. <: @ +: $ _1: , ] , 1: , -
+e2=. _1 & |. @ (e0 # e1)
+evolute=: ,~ $ /: @ (+/\) @ e2 f.
 
 HWNDP=: ''
 
