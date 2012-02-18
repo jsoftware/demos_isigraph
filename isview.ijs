@@ -131,7 +131,9 @@ glpaint''
 
 NB. =========================================================
 isdemo_g_paint=: 3 : 0
-isdemo_run1 ISDEMODAT
+if. (<ISDEMOSEL) -.@e. ;:'PAINT SMESSER ' do.
+  isdemo_run1 ISDEMODAT
+end.
 )
 
 NB. =========================================================
@@ -246,7 +248,7 @@ gshow=: 3 : 0
 try. wd 'psel isdemo'
 catch. return. end.
 glsel 'g'
-NB. glpaint''
+glpaint''
 0
 )
 
