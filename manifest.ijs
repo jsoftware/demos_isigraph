@@ -7,7 +7,7 @@ This package contains isigraph example scripts.
 
 Each script can be run by itself. First enter:
 
-require 'gui/gtkwd'
+require 'gtkwd'
 
 Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
