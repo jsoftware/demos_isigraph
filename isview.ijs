@@ -126,8 +126,6 @@ isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   isdemo_run1 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 end.
-glsel 'g'
-glpaint''
 )
 
 NB. =========================================================
@@ -141,9 +139,11 @@ NB. =========================================================
 isdemo_run1=: 3 : 0
 try. wd 'psel isdemo'
 catch. return. end.
+glnodblbuf 0
 gopen''
 0!:100 y
 gshow''
+glpaint''
 )
 
 NB. =========================================================

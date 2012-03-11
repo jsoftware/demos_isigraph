@@ -21,6 +21,7 @@ glpaint''
 
 NB. =========================================================
 smesser=: 3 : 0
+glnodblbuf 1
 gback 255 255 255
 while. COUNT<2000 do.
   try. smupdate''
