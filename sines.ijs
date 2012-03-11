@@ -9,5 +9,8 @@ w=. 2 3 {GSIZE%1000
 fn=. glellipse@[ gbrush
 pos=. (w *"1 X ,. gscale sin X) ,"1 SIZE
 clr=. 255 <. 128 * 1 + (sin ,. cos,. sin @ -:) X%10
+glmark''
 gback 255 255 255
 pos fn"1 clr
+glpaint''
+gltrash''
