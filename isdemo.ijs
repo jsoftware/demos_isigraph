@@ -7,4 +7,4 @@ load ISDEMOPATH,'isview.ijs'
 load ISDEMOPATH,'isedit.ijs'
 
 isdemo_jigdemo_''
-wdloop^:(-.IFJ6)''
+evtloop^:(-.IFJ6)''
