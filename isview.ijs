@@ -1,10 +1,10 @@
 NB. Isigraph viewer
 
-require 'gtkwd gui/gtkwd/wdviewmat'
-NB. require '~addons/general/misc/evolute.ijs'
+require 'droidwd gtkwd wdclass viewmat'
 
 coclass 'jigdemo'
-coinsert 'jgl2'
+coinsert 'jgl2 wdbase jisigraph'
+droidwd_run=: isdemo
 
 require '~addons/demos/isigraph/iscolor.ijs'
 
@@ -118,13 +118,23 @@ wd 'setenable clip ',":-.IFUNIX
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 wd 'pshow'
 wd 'set M',ISDEMOSEL,' 1'
-isdemo_run''
+ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 )
 
 NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
-  isdemo_run1 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  if. IFJ6 +. ('Android'-.@-:UNAME) do.
+    isdemo_run1 ISDEMODAT
+  else.
+    if. ('Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+      sminfo 'J Graphics';'This demo is for desktop versions only'
+      return.
+    end.
+    glsel 'g'
+    glpaintx''
+  end.
 end.
 )
 
@@ -140,6 +150,7 @@ isdemo_run1=: 3 : 0
 try. wd 'psel isdemo'
 catch. return. end.
 glnodblbuf 0
+glmark''
 gopen''
 0!:100 y
 gshow''
@@ -149,14 +160,14 @@ glpaint''
 NB. =========================================================
 isdemo_about_button=: 3 : 0
 j=. 'Isigraph Graphics Demo V',(4j2 ": ISDEMOVER)
-wdinfo 'Isigraph Graphics';j
+sminfo 'Isigraph Graphics';j
 )
 
 NB. =========================================================
 NB. following works only in Win32, need to make this
 isdemo_clip_button=: 3 : 0
 if. -. IFWIN do.
-  info 'Save graphics to clipboard is only available in Windows'
+  sminfo 'Save graphics to clipboard is only available in Windows'
   return.
 end.
 f=. jpath '~temp/isdemo.emf'
@@ -219,11 +230,13 @@ NB. =========================================================
 isdemo_exit_button=: 3 : 0
 try. wd 'psel paint;pclose;' catch. end.
 try. wd 'psel isdemo;pclose;' catch. end.
+destroy__locVM''
 )
 
 NB. =========================================================
 isdemo_view_button=: 3 : 0
-isedit_run ISDEMODAT
+isedit_run_jigdemoedit_`start_droidwd_jigdemoedit_@.('Android'-:UNAME) 'jigdemoedit'
+NB. isedit_run ISDEMODAT
 )
 
 NB. =========================================================
@@ -257,7 +270,7 @@ NB. =========================================================
 vmat=: 3 : 0
 '' vmat y
 :
-x viewmatcc__locVM y;'g'
+x viewmatcc__locVM y;wd'qhwndc g'
 )
 
 NB. =========================================================

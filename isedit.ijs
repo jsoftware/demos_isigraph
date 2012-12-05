@@ -1,7 +1,9 @@
 NB. edit isigraph definition
 
-coclass 'jigdemo'
-coinsert 'jgl2'
+coclass 'jigdemoedit'
+coinsert 'jgl2 wdbase'
+droidwd_run=: isedit_run
+
 ISEDFONTSZ=: ''
 ISEDTEXT=: ''
 
@@ -18,6 +20,7 @@ rem form end;
 
 NB. argument is definition
 isedit_run=: 3 : 0
+y=. ISDEMODAT_jigdemo_
 if. 0=#ISEDFONTSZ do.
   getfontsize=. 13 : '{.1{._1 -.~ _1 ". y'
   ISEDFONT=: FIXFONT
@@ -39,7 +42,7 @@ wd 'pshow'
 )
 
 isedit_cancel_button=: 3 : 0
-ISEDTEXT=: graf
+ISEDTEXT_igdemo_=: graf
 wd 'pclose'
 try. wd 'psel isdemo' catch. end.
 )
@@ -47,6 +50,9 @@ try. wd 'psel isdemo' catch. end.
 isedit_close=: isedit_cancel_button
 
 isedit_redisplay_button=: 3 : 0
+if. 'Android'-:UNAME do.
+  sminfo 'J Graphics';'This demo is for desktop versions only' return.
+end.
 ISEDTEXT=: graf
 try.
   wd 'psel isdemo'
@@ -54,7 +60,7 @@ try.
   ISDEMODAT=: graf
   wd 'psel isedit;setfocus graf'
 catch.
-  wdinfo 'error in graph definition'
+  sminfo 'error in graph definition'
   return.
 end.
 )
@@ -72,13 +78,13 @@ wd 'setfont graf ',":ISEDFONT
 )
 
 isedit_rctrl_fkey=: 3 : 0
-if. 0=2 wdquery 'isedit';'OK to recover definition?' do.
+if. 0=2 wdquery`0:@.('Android'-:UNAME) 'isedit';'OK to recover definition?' do.
   wd 'set graf *',freads tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 end.
 )
 
 isedit_sctrl_fkey=: 3 : 0
-if. 0=2 wdquery 'isedit';'OK to save definition?' do.
+if. 0=2 wdquery`0:@.('Android'-:UNAME) 'isedit';'OK to save definition?' do.
   graf fwrites tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 end.
 )
