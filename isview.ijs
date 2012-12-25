@@ -14,7 +14,7 @@ e1=. <: @ +: $ _1: , ] , 1: , -
 e2=. _1 & |. @ (e0 # e1)
 evolute=: ,~ $ /: @ (+/\) @ e2 f.
 
-HWNDP=: ''
+HWNDP=: 0
 
 clean=: 13 : 'y * 1e_10 <: |y'
 mp=: +/ .*
@@ -113,7 +113,7 @@ NB. menu print "&Print" "" "" "";
 NB. =========================================================
 isdemo=: 3 : 0
 wd OPENISDEMO
-HWNDP=: wd 'qhwndp'
+HWNDP=: wdqhwndp''
 wd 'setenable clip ',":-.IFUNIX
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 wd 'pshow'
@@ -254,7 +254,7 @@ catch. return.
 end.
 glsel 'g'
 glclear''
-GSIZE=: 0 ". wd 'qchildxywhx g'
+GSIZE=: wdqchildxywhx 'g'
 )
 
 NB. =========================================================
@@ -270,7 +270,7 @@ NB. =========================================================
 vmat=: 3 : 0
 '' vmat y
 :
-x viewmatcc__locVM y;wd'qhwndc g'
+x viewmatcc__locVM y;wdqhwndc 'g'
 )
 
 NB. =========================================================
