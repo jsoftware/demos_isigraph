@@ -125,10 +125,10 @@ NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. IFJ6 +. ('Android'-.@-:UNAME) do.
+  if. IFJ6 +. (-. IFQT+.'Android'-:UNAME) do.
     isdemo_run1 ISDEMODAT
   else.
-    if. ('Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. (IFQT+.'Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
       sminfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
