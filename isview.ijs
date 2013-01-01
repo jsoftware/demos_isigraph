@@ -125,15 +125,16 @@ NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. IFJ6 +. (-. IFQT+.'Android'-:UNAME) do.
+  if. IFJ6 +. (-. 'Android'-:UNAME) do.
     isdemo_run1 ISDEMODAT
+    glpaint`glpaintx@.('Android'-:UNAME)''
   else.
-    if. (IFQT+.'Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. ('Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
       sminfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
     glsel 'g'
-    glpaintx''
+    glpaint`glpaintx@.('Android'-:UNAME)''
   end.
 end.
 )
@@ -154,7 +155,6 @@ glmark''
 gopen''
 0!:100 y
 gshow''
-glpaint''
 )
 
 NB. =========================================================
@@ -254,7 +254,7 @@ catch. return.
 end.
 glsel 'g'
 glclear''
-GSIZE=: wdqchildxywhx 'g'
+GSIZE=: 0 0, glqwh''
 )
 
 NB. =========================================================
