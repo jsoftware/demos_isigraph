@@ -1,7 +1,7 @@
 NB. edit isigraph definition
 
 coclass 'jigdemoedit'
-coinsert 'jgl2 wdbase'
+coinsert 'jigdemo wdbase'
 droidwd_run=: isedit_run
 
 ISEDFONTSZ=: ''
@@ -9,11 +9,15 @@ ISEDTEXT=: ''
 
 ISEDIT=: 0 : 0
 pc isedit closeok;
+bin vh;
 xywh 0 0 17 10;cc minus button;cn "&<<";
 xywh 16 0 17 10;cc plus button;cn "&>>";
+bin s;
 xywh 131 0 34 10;cc redisplay button leftmove rightmove;cn "&Redisplay";
 xywh 165 0 34 10;cc cancel button leftmove rightmove;cn "&Cancel";
+bin z;
 xywh 0 9 200 100;cc graf editm ws_vscroll rightmove bottommove;
+bin z;
 pas 0 0;
 rem form end;
 )
