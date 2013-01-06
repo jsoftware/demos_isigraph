@@ -119,6 +119,8 @@ ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 wd 'pshow'
 wd 'set M',ISDEMOSEL,' 1'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+glsel 'g'
+glpaint`glpaintx@.('Android'-:UNAME)''
 )
 
 NB. =========================================================
@@ -148,7 +150,7 @@ end.
 
 NB. =========================================================
 isdemo_run1=: 3 : 0
-try. wd 'psel isdemo'
+try. wd 'psel isdemo;'
 catch. return. end.
 glnodblbuf 0
 glmark''
@@ -249,7 +251,7 @@ NB. =========================================================
 NB. gopen
 gopen=: 3 : 0
 try.
-  wd 'psel isdemo;pactive'
+  wd 'psel isdemo'
 catch. return.
 end.
 glsel 'g'
