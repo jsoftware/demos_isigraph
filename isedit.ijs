@@ -54,7 +54,7 @@ try. wd 'psel isdemo' catch. end.
 isedit_close=: isedit_cancel_button
 
 isedit_redisplay_button=: 3 : 0
-if. 'Android'-:UNAME do.
+if. (('Android'-:UNAME)>IFQT) do.
   sminfo 'J Graphics';'This demo is for desktop versions only' return.
 end.
 ISEDTEXT=: graf

@@ -120,23 +120,23 @@ wd 'pshow'
 wd 'set M',ISDEMOSEL,' 1'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 glsel 'g'
-glpaint`glpaintx@.('Android'-:UNAME)''
+glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
 )
 
 NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. IFJ6 +. (-. 'Android'-:UNAME) do.
+  if. IFJ6 +. (-. (('Android'-:UNAME)>IFQT)) do.
     isdemo_run1 ISDEMODAT
-    glpaint`glpaintx@.('Android'-:UNAME)''
+    glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
   else.
-    if. ('Android'-:UNAME) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. (('Android'-:UNAME)>IFQT) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
       sminfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
     glsel 'g'
-    glpaint`glpaintx@.('Android'-:UNAME)''
+    glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
   end.
 end.
 )
