@@ -13,9 +13,9 @@ Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
 )
 
-VERSION=: '1.0.18'
+VERSION=: '1.0.19'
 
-RELEASE=: 'j701'
+RELEASE=: 'j701 j801'
 
 FILES=: 0 : 0
 evolute1.ijs
