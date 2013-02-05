@@ -7,13 +7,13 @@ This package contains isigraph example scripts.
 
 Each script can be run by itself. First enter:
 
-require 'droidwd gtkwd'
+require 'droidwd'
 
 Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
 )
 
-VERSION=: '1.0.19'
+VERSION=: '1.0.21'
 
 RELEASE=: 'j701 j801'
 

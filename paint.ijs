@@ -63,7 +63,7 @@ else.
 
 end.
 wd p
-wd^:(-.IFJ6) 'pshow;pshow sw_hide'
+wd 'pshow;pshow sw_hide'
 wdfit''
 wd 'set freehand ',freehand=: '1'
 paint_clear_button''

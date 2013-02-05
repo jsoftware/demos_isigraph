@@ -1,6 +1,7 @@
 NB. Isigraph viewer
 
-require 'droidwd gtkwd wdclass viewmat'
+require 'droidwd wdclass viewmat'
+require^:(-.IFJ6) ::0: 'gtkwd'
 
 coclass 'jigdemo'
 coinsert 'jgl2 wdbase jisigraph'
@@ -127,7 +128,7 @@ NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. IFJ6 +. (-. (('Android'-:UNAME)>IFQT)) do.
+  if. (-. (('Android'-:UNAME)>IFQT)) do.
     isdemo_run1 ISDEMODAT
     glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
   else.
