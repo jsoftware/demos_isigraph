@@ -122,6 +122,13 @@ wd 'set M',ISDEMOSEL,' 1'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 glsel 'g'
 glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+NB. workaround Qt bug, simulate a user deselect/select
+if. (wdisparent 'demos') *. IFQT>('Android'-:UNAME) do.
+  wd'psel demos'
+  wd'pactive'
+  wd'psel isdemo'
+  wd'pactive'
+end.
 )
 
 NB. =========================================================
