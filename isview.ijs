@@ -154,7 +154,6 @@ isdemo_run1=: 3 : 0
 try. wd 'psel isdemo;'
 catch. return. end.
 glnodblbuf 0
-glmark''
 gopen''
 0!:100 y
 gshow''
