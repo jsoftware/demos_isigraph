@@ -1,7 +1,6 @@
 NB. Isigraph viewer
 
 require 'droidwd wdclass viewmat'
-require^:(-.IFJ6) ::0: 'gtkwd'
 
 coclass 'jigdemo'
 coinsert 'jgl2 wdbase jisigraph'
