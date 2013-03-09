@@ -117,9 +117,9 @@ wd OPENISDEMO
 HWNDP=: wdqhwndp''
 wd 'setenable clip ',":-.IFUNIX
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
+ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 wd 'pshow'
 wd 'set M',ISDEMOSEL,' 1'
-ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 glsel 'g'
 glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
 )
