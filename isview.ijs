@@ -3,7 +3,7 @@ NB. Isigraph viewer
 require 'droidwd wdclass viewmat'
 
 coclass 'jigdemo'
-coinsert 'jgl2 wdbase jisigraph'
+coinsert 'jgl2 wdbase jisigraph qtprinter'
 droidwd_run=: isdemo
 
 require '~addons/demos/isigraph/iscolor.ijs'
@@ -40,7 +40,7 @@ j=. _2 [\ ;:j
 ISDEMONAMES=: {."1 j
 ISDEMOTYPE=: ". &> {:"1 j
 
-ISDEMOVER=: 1.8
+ISDEMOVER=: 1.9
 ISDEMOSEL=: 'TITLE'
 ISDEMOPATH=: jpath '~addons/demos/isigraph/'
 
@@ -51,59 +51,60 @@ isdemo_g_mbldown
 
 NB. =========================================================
 OPENISDEMO=: 0 : 0
-pc isdemo closeok;pn "J Graphics";
+pc isdemo escclose closeok;pn "J Graphics";
 menupop "&Options";
-menu view "&View Definition" "" "" "";
+menu view "&View Definition";
 menusep ;
-menu clip "&Clip" "" "" "";
+menu clip "&Clip";
 menusep ;
-menu savebmp "&Save ~temp/isdemo.bmp" "" "" "";
+menu savebmp "&Save ~temp/isdemo.bmp";
 menusep ;
-menu exit "E&xit" "" "" "";
+menu print "&Print";
+menusep ;
+menu exit "E&xit" "Ctrl+Q";
 menupopz;
 menupop "&Basic";
-menu MTITLE "Isigraph Graphics" "" "" "";
+menu MTITLE "Isigraph Graphics";
 menusep ;
-menu MEVOLUTE1 "E&volute 1" "" "" "";
-menu MEVOLUTE2 "E&volute 2" "" "" "";
+menu MEVOLUTE1 "E&volute 1";
+menu MEVOLUTE2 "E&volute 2";
 menupopz;
 menupop "&IFS";
 menupop "&Sierpinski";
-menu MSIERCAR1 "&Carpet 1" "" "" "";
-menu MSIERCAR2 "&Carpet 2" "" "" "";
+menu MSIERCAR1 "&Carpet 1";
+menu MSIERCAR2 "&Carpet 2";
 menusep ;
-menu MSIERTRI1 "&Triangle 1" "" "" "";
-menu MSIERTRI2 "&Triangle 2" "" "" "";
-menu MSIERTRI3 "&Triangle 3" "" "" "";
-menu MSIERTRI4 "&Triangle 4" "" "" "";
+menu MSIERTRI1 "&Triangle 1";
+menu MSIERTRI2 "&Triangle 2";
+menu MSIERTRI3 "&Triangle 3";
+menu MSIERTRI4 "&Triangle 4";
 menupopz;
 menusep ;
-menu MPLASMA1 "&Plasma Cloud 1" "" "" "";
-menu MFRIEZE1 "&Frieze Pattern 1" "" "" "";
+menu MPLASMA1 "&Plasma Cloud 1";
+menu MFRIEZE1 "&Frieze Pattern 1";
 menusep ;
-menu MIFS1 "&IFS1" "" "" "";
-menu MIFS2 "&IFS2" "" "" "";
+menu MIFS1 "&IFS1";
+menu MIFS2 "&IFS2";
 menupopz;
 menupop "&Shapes";
-menu MKOCH "&Koch" "" "" "";
-menu MPOLYGON "&Polygon" "" "" "";
-menu MSPIRALS "&Spirals" "" "" "";
-menu MPOWER "&Power" "" "" "";
-menu MSINES "&Sines" "" "" "";
+menu MKOCH "&Koch";
+menu MPOLYGON "&Polygon";
+menu MSPIRALS "&Spirals";
+menu MPOWER "&Power";
+menu MSINES "&Sines";
 menupopz;
 menupop "&Extras";
-menu MPAINT "&Paint" "" "" "";
+menu MPAINT "&Paint";
 menusep ;
-menu MSMESSER "&Screen Roller" "" "" "";
+menu MSMESSER "&Screen Roller";
 menupopz;
 menupop "&Help";
-menu MF12 "&F12 Next" "" "" "";
-menu MF12S "&Shift F12 Previous" "" "" "";
+menu MF12 "&F12 Next" "F12";
+menu MF12S "&Shift F12 Previous" "Shift+F12";
 menusep ;
-menu about "&About" "" "" "";
+menu about "&About";
 menupopz;
-xywh 0 0 220 200;cc g isigraph rightmove bottommove;
-pas 0 0;pcenter;
+wh 398 398;cc g isigraph;
 rem form end;
 )
 
@@ -114,11 +115,14 @@ NB. =========================================================
 isdemo=: 3 : 0
 wd OPENISDEMO
 HWNDP=: wdqhwndp''
-wd 'setenable clip ',":-.IFUNIX
+NB.wd 'setenable clip ',":-.IFUNIX
+wd 'setenable clip 0'
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 wd 'pshow'
-wd 'set M',ISDEMOSEL,' 1'
+pos=. ". wd'psel isdemo; qformx'
+wd'pmovex ',": (0 0 2 2)+pos
+wd 'set M',ISDEMOSEL,' checked "1"'
 glsel 'g'
 glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
 )
@@ -165,8 +169,25 @@ sminfo 'Isigraph Graphics';j
 )
 
 NB. =========================================================
+NB. prints to the default printer
+isdemo_print_button=: 3 : 0
+box=. 0 0,glqwh''
+cbmp=. getbmp''
+pr=. ,> {.chop wd'qprinters'
+if. 0=#pr do. return. end.
+glzprinter ({.~ i.&':') pr
+dpi=. glzresolution 300
+glzstartdoc ''
+glzscale 2#dpi%96
+glzpixels (96 96 0 0+box),,cbmp
+glzenddoc''
+)
+
+NB. =========================================================
 NB. following works only in Win32, need to make this
 isdemo_clip_button=: 3 : 0
+sminfo 'Save graphics to clipboard is not yet supported.'
+return.
 if. -. IFWIN do.
   sminfo 'Save graphics to clipboard is only available in Windows'
   return.
@@ -176,7 +197,7 @@ glfile f
 glemfopen''
 isdemo_g_paint''
 glemfclose''
-wd 'clipcopyx enhmetafile "',f,'"'
+wd 'clipcopy *',freads f
 1!:55 <f
 )
 
@@ -216,10 +237,9 @@ isdemo_savebmp_button=: 3 : 0
 
 NB. =========================================================
 isdemo_showname=: 3 : 0
-wd 'set M',ISDEMOSEL,' 0'
+wd 'set M',ISDEMOSEL,' checked "0"'
 ISDEMOSEL=: y
 ISTYPE=: ISDEMOTYPE {~ ISDEMONAMES i. <y
-wd 'set M',ISDEMOSEL,' 1'
 if. wdisparent 'paint' do.
   wd :: ] 'psel paint;pclose'
   wd 'psel isdemo'
@@ -276,3 +296,14 @@ x viewmatcc__locVM y;wdqhwndc 'g'
 
 NB. =========================================================
 isdemo_close=: isdemo_exit_button
+
+chop=: 3 : 0
+y chop~ (' ',LF) {~ LF e. ,y
+:
+if. 2>#$y
+do.
+  (<'') -.~ (y e.x) <;._2 y=. y,{.x
+else.
+  |: &.> y -. {: y=. (*./y e.x) <;._2 |: y=. y,"1 [ 2${.x
+end.
+)
