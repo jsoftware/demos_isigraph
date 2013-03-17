@@ -59,8 +59,9 @@ end.
 ISEDTEXT=: graf
 try.
   wd 'psel isdemo'
-  isdemo_run1 ISEDTEXT
+  isdemo_run1_jigdemo_ ISEDTEXT
   ISDEMODAT=: ISEDTEXT
+  glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
   wd 'psel isedit;setfocus graf'
 catch.
   sminfo 'error in graph definition'
