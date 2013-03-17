@@ -51,7 +51,7 @@ isdemo_g_mbldown
 
 NB. =========================================================
 OPENISDEMO=: 0 : 0
-pc isdemo escclose closeok;pn "J Graphics";
+pc isdemo closeok;pn "J Graphics";
 menupop "&Options";
 menu view "&View Definition";
 menusep ;

@@ -36,7 +36,7 @@ else.
   wd ISEDIT
   wd 'setfont graf ',ISEDFONT
 end.
-wd 'set graf text ',y
+wd 'set graf text *',y
 wd 'setfocus graf'
 wd 'pshow'
 )
@@ -50,6 +50,9 @@ try. wd 'psel isdemo' catch. end.
 isedit_close=: isedit_cancel_button
 
 isedit_redisplay_button=: 3 : 0
+if. ISDEMOSEL_jigdemo_-:'PAINT' do.
+  sminfo 'J Graphics';'not applicable' return.
+end.
 if. (('Android'-:UNAME)>IFQT) do.
   sminfo 'J Graphics';'This demo is for desktop versions only' return.
 end.

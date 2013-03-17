@@ -8,7 +8,7 @@ tolist=: }. @ ; @: (LF&, @ , @ ": each)
 
 NB. =========================================================
 PAINT=: 0 : 0
-pc paint;pn "Paint Demo";
+pc paint owner;pn "Paint Demo";
 menupop "File";
 menu clear "Clear";
 menusep ;
@@ -151,6 +151,7 @@ paint_close=: 3 : 0
 wd 'pclose'
 try.
   wd 'psel isdemo'
+  glsel 'g'
 catch. end.
 )
 
