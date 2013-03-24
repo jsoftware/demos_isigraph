@@ -62,7 +62,6 @@ else.
 end.
 
 wd p
-wd 'pshow;pshow sw_hide'
 wdfit''
 wd 'set freehand ',freehand=: '1'
 paint_clear_button''

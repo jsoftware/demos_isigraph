@@ -119,12 +119,12 @@ NB.wd 'setenable clip ',":-.IFUNIX
 wd 'setenable clip 0'
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-wd 'pshow'
 pos=. ". wd'psel isdemo; qformx'
 wd'pmovex ',": (0 0 2 2)+pos
 wd 'set M',ISDEMOSEL,' checked "1"'
-glsel 'g'
-glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+wd 'pshow'
+NB. glsel 'g'
+NB. glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
 )
 
 NB. =========================================================
@@ -156,6 +156,7 @@ NB. =========================================================
 isdemo_run1=: 3 : 0
 try. wd 'psel isdemo;'
 catch. return. end.
+glsel ,'g'
 glnodblbuf 0
 gopen''
 0!:100 y
