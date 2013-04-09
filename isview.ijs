@@ -123,23 +123,23 @@ wd 'set M',ISDEMOSEL,' checked "1"'
 wd 'pcenter'
 wd 'pshow'
 NB. glsel 'g'
-NB. glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+NB. glpaint`glpaintx@.IFJCDROID''
 )
 
 NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. (-. (('Android'-:UNAME)>IFQT)) do.
+  if. (-. IFJCDROID) do.
     isdemo_run1 ISDEMODAT
-    glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+    glpaint`glpaintx@.IFJCDROID''
   else.
-    if. (('Android'-:UNAME)>IFQT) *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. IFJCDROID *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
       sminfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
     glsel 'g'
-    glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+    glpaint`glpaintx@.IFJCDROID''
   end.
 end.
 )
@@ -256,7 +256,7 @@ destroy__locVM''
 
 NB. =========================================================
 isdemo_view_button=: 3 : 0
-isedit_run_jigdemoedit_`start_droidwd_jigdemoedit_@.(('Android'-:UNAME)>IFQT) 'jigdemoedit'
+isedit_run_jigdemoedit_`start_droidwd_jigdemoedit_@.IFJCDROID 'jigdemoedit'
 NB. isedit_run ISDEMODAT
 )
 

@@ -53,7 +53,7 @@ isedit_redisplay_button=: 3 : 0
 if. ISDEMOSEL_jigdemo_-:'PAINT' do.
   sminfo 'J Graphics';'not applicable' return.
 end.
-if. (('Android'-:UNAME)>IFQT) do.
+if. IFJCDROID do.
   sminfo 'J Graphics';'This demo is for desktop versions only' return.
 end.
 ISEDTEXT=: graf
@@ -61,7 +61,7 @@ try.
   wd 'psel isdemo'
   isdemo_run1_jigdemo_ ISEDTEXT
   ISDEMODAT=: ISEDTEXT
-  glpaint`glpaintx@.(('Android'-:UNAME)>IFQT)''
+  glpaint`glpaintx@.IFJCDROID''
   wd 'psel isedit;setfocus graf'
 catch.
   sminfo 'error in graph definition'
