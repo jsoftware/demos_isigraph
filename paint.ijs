@@ -17,7 +17,7 @@ menusep ;
 menu exit "E&xit";
 menupopz;
 bin v;
-wh 358 203;cc g isigraph ws_border;
+minwh 358 203;cc g isigraph ws_border;
 set g stretch 1;
 bin hsv;
 groupbox "Tools";

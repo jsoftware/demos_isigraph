@@ -16,7 +16,7 @@ bin s;
 cc redisplay button;cn "&Redisplay";
 cc cancel button;cn "&Cancel";
 bin z;
-wh 400 200;cc graf editm;
+minwh 400 200;cc graf editm;
 bin z;
 pas 0 0;
 rem form end;
