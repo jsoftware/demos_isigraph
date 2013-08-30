@@ -104,7 +104,7 @@ menu MF12S "&Shift F12 Previous" "Shift+F12";
 menusep ;
 menu about "&About";
 menupopz;
-minwh 398 398;cc g isigraph;
+minwh 398 398;cc g isigraph flush;
 rem form end;
 )
 

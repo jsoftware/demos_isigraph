@@ -48,11 +48,9 @@ VP=: 50
 
 POLY=: 0 : 0
 pc Poly closeok;pn "Polly Hedron";
-xywh 0 0 150 150;cc g0 isigraph;
-xywh 0 150 150 10;
-cc s0 scrollbar;set s0 0 50 100 4;
-xywh 150 0 10 150;
-cc s1 scrollbar sbs_vert;set s1 0 50 100 4;
+minwh 150 150;cc g0 isigraph flush;
+minwh 150 10; cc s0 scrollbar;set s0 0 50 100 4;
+minwh 10 150; cc s1 scrollbar sbs_vert;set s1 0 50 100 4;
 pas 0 0;pcenter;pshow
 )
 
