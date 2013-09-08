@@ -105,6 +105,7 @@ menusep ;
 menu about "&About";
 menupopz;
 minwh 398 398;cc g isigraph flush;
+pas 0 0;
 rem form end;
 )
 
