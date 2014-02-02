@@ -7,4 +7,3 @@ load ISDEMOPATH,'isview.ijs'
 load ISDEMOPATH,'isedit.ijs'
 
 isdemo_jigdemo_`start_droidwd_jigdemo_@.IFJCDROID 'jigdemo'
-evtloop''
