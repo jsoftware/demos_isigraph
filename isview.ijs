@@ -1,6 +1,6 @@
 NB. Isigraph viewer
 
-require 'droidwd wdclass viewmat'
+require 'droidwd viewmat'
 
 coclass 'jigdemo'
 coinsert 'jgl2 wdbase jisigraph qtprinter'
