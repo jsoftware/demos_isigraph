@@ -1,5 +1,8 @@
 NB. screen messer
 
+require 'gl2'
+coinsert 'jgl2'
+
 COUNT=: 0
 SIZE=: 40 40
 DIR=: 1 1
@@ -8,8 +11,27 @@ POS=: ?MAX
 COLORS=: ?500 3$255
 
 NB. =========================================================
+ROLLER=: 0 : 0
+pc roller owner;pn "Sreen Roller";
+cc g isidraw flush;
+set g minwh 400 400;
+pas 0 0;pcenter;
+)
+
+NB. =========================================================
+roller_close=: 3 : 0
+wd 'pclose'
+try.
+  ISDEMOSEL=: ISDEMOSELOLD
+  isdemo_run''
+catch. end.
+)
+
+roller_cancel=: roller_close
+
+NB. =========================================================
 smupdate=: 3 : 0
-w=. 2 3{GSIZE%1000
+w=. GSIZE%1000
 COUNT=: >:COUNT
 POS=: POS+DIR*?40 36
 DIR=: DIR*_1^(POS<0)+.MAX<POS
@@ -21,12 +43,11 @@ glpaintx''
 
 NB. =========================================================
 smesser=: 3 : 0
-NB. glnodblbuf 1
-gback 255 255 255
+wd ROLLER
+wd 'pshow'
+GSIZE=: glqwh''
 while. COUNT<2000 do.
-  try. smupdate''
-  catch. break.
-  end.
+  smupdate''
 end.
 )
 

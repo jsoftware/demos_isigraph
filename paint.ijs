@@ -1,50 +1,30 @@
 NB. Paint Demo
 NB.
-NB. simple paint application with mouse and char events
+NB. simple paint application
 
-require 'gl2'
+require 'gl2 bmp'
 coinsert 'jgl2'
 tolist=: }. @ ; @: (LF&, @ , @ ": each)
+
+PenColor=: 0 0 0
+PenWidth=: 1
 
 NB. =========================================================
 PAINT=: 0 : 0
 pc paint owner;pn "Paint Demo";
 menupop "File";
-menu clear "Clear";
 menusep ;
 menu savebmp "&Save ~temp/paint.bmp";
 menusep ;
 menu exit "E&xit";
 menupopz;
-bin v;
-minwh 358 203;cc g isigraph flush;
-set g stretch 1;
-bin hsv;
-groupbox "Tools";
-bin h;
-cc freehand radiobutton;cn "Freehand";
-cc line radiobutton group;cn "Line";
-cc box radiobutton group;cn "Box";
-cc ellipse radiobutton group;cn "Ellipse";
-cc text radiobutton group;cn "Text";
-bin sz;
-groupboxend;
-bin h;
-groupbox "Colors";
-bin vh;
-cc red checkbox;cn "Red";
-cc green checkbox;cn "Green";
-cc blue checkbox;cn "Blue";
-bin zsz;
-groupboxend;
-
-groupbox "Line width";
-bin hv;
-cc thick radiobutton;cn "Thick";
-cc thin radiobutton group;cn "Thin";
-bin szsz;
-groupboxend;
-bin szzszz;
+menupop "Options";
+menu color "Pen &Color...";
+menu width "Pen &Width...";
+menusep ;
+menu clear "Clear &Drawing";
+menupopz;
+cc g isidraw flush;
 pas 0 0;pcenter;
 rem form end;
 )
@@ -52,24 +32,20 @@ rem form end;
 NB. =========================================================
 paint_run=: 3 : 0
 D=: DPOS=: 0
-p=. PAINT
 FONTSIZE=: 30
-
 if. IFUNIX do.
   FONT=: 'Arial'
 else.
   FONT=: 'sansserif'
 end.
-
-wd p
-wdfit''
-wd 'set freehand ',freehand=: '1'
-paint_clear_button''
+wd PAINT
+wd 'set g minwh 600 350'
 wd 'pshow'
 )
 
 NB. =========================================================
 paint_g_char=: 3 : 0
+return.
 if. ".text do.
   glfont FONT,' ',":FONTSIZE
   if. sysdata=8{a. do.
@@ -81,14 +57,14 @@ if. ".text do.
     glrect (DPOS + new,0),(w-new),h
   else.
     TEXT=: TEXT,sysdata
-    glrgb 255 * '1'=red,green,blue
+    glrgb PenColor
     gltextcolor ''
     gltextxy DPOS
     gltext TEXT
   end.
   nxt=. DPOS + ({.glqextent TEXT),0
   glcaret nxt,2,FONTSIZE
-  glpaint ''
+  glpaint''
 end.
 )
 
@@ -99,22 +75,17 @@ getpos=: 3 : 0
 
 NB. =========================================================
 paint_g_mbldown=: 3 : 0
-wd 'setfocus g'
+NB. wd 'setfocus g'
 D=: 1
 DPOS=: getpos ''
-glcapture {. ('1'=freehand,line,box,ellipse,text)#1 2 3 4 0
-if. ".text do.
-  TEXT=: ''
-  glcaret DPOS,2,FONTSIZE
-  glpaint ''
-end.
 )
 
-NB. =========================================================
-pen=: 3 : 0
-glrgb 255 * '1'=red,green,blue
-glpen (2+3*".thick),PS_SOLID
-)
+NB. glcapture {. ('1'=freehand,line,box,ellipse,text)#1 2 3 4 0
+NB. if. ".text do.
+NB.   TEXT=: ''
+NB.   glcaret DPOS,2,FONTSIZE
+NB.   glpaint ''
+NB. end.
 
 NB. =========================================================
 paint_g_mblup=: 3 : 0
@@ -124,19 +95,12 @@ p=. getpos ''
 q=. DPOS
 pen''
 glbrushnull''
-if. ".line do.
-  gllines q,p
-elseif. ".box do.
-  glrect q,p-q
-elseif. ".ellipse do.
-  glellipse q,p-q
-end.
 glpaint ''
 )
 
 NB. =========================================================
 paint_g_mmove=: 3 : 0
-if. D *. ".freehand do.
+if. D do.
   pen''
   old=. DPOS
   DPOS=: getpos''
@@ -146,25 +110,50 @@ end.
 )
 
 NB. =========================================================
-paint_close=: 3 : 0
-wd 'pclose'
-try.
-  wd 'psel isdemo'
-  glsel 'g'
-catch. end.
-)
-
-paint_cancel=: paint_exit_button=: paint_close
-
-NB. =========================================================
 paint_clear_button=: 3 : 0
 glclear''
 glpaint ''
 )
 
 NB. =========================================================
+paint_close=: 3 : 0
+wd 'pclose'
+try.
+  ISDEMOSEL=: ISDEMOSELOLD
+  isdemo_run''
+catch. end.
+)
+
+paint_cancel=: paint_exit_button=: paint_close
+
+NB. =========================================================
+paint_color_button=: 3 : 0
+r=. wd 'mb color'
+if. #r do.
+  PenColor=: 0 ". r
+end.
+)
+
+NB. =========================================================
 paint_savebmp_button=: 3 : 0
-(getbmp'') writebmp jpath '~temp/paint.bmp'
+glsel 'h'
+box=. 0 0,glqwh''
+bmp=. (3 2 { box) $ glqpixels box
+bmp writebmp jpath '~temp/paint.bmp'
+)
+
+NB. =========================================================
+paint_width_button=: 3 : 0
+r=. wd 'mb input int Paint "Enter pen width:" 1 1 100 1'
+if. #r do.
+  PenWidth=: 0 ". r
+end.
+)
+
+NB. =========================================================
+pen=: 3 : 0
+glrgb PenColor
+glpen PenWidth,PS_SOLID
 )
 
 NB. =========================================================

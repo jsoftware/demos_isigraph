@@ -239,6 +239,7 @@ isdemo_savebmp_button=: 3 : 0
 NB. =========================================================
 isdemo_showname=: 3 : 0
 wd 'set M',ISDEMOSEL,' checked "0"'
+ISDEMOSELOLD=: ISDEMOSEL
 ISDEMOSEL=: y
 ISTYPE=: ISDEMOTYPE {~ ISDEMONAMES i. <y
 if. wdisparent 'paint' do.
