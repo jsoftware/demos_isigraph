@@ -46,6 +46,7 @@ smesser=: 3 : 0
 wd ROLLER
 wd 'pshow'
 GSIZE=: glqwh''
+glfill 255 255 255
 while. COUNT<2000 do.
   smupdate''
 end.

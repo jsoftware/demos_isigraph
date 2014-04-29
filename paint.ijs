@@ -6,8 +6,8 @@ require 'gl2 bmp'
 coinsert 'jgl2'
 tolist=: }. @ ; @: (LF&, @ , @ ": each)
 
-PenColor=: 0 0 0
-PenWidth=: 1
+PenColor=: 255 0 0
+PenWidth=: 4
 
 NB. =========================================================
 PAINT=: 0 : 0
@@ -41,6 +41,7 @@ end.
 wd PAINT
 wd 'set g minwh 600 350'
 wd 'pshow'
+glpaint glfill 255 255 255
 )
 
 NB. =========================================================
