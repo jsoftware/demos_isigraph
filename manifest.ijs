@@ -13,7 +13,7 @@ Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
 )
 
-VERSION=: '1.0.42'
+VERSION=: '1.0.43'
 
 RELEASE=: 'j802'
 
