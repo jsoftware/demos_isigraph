@@ -47,7 +47,7 @@ wd ROLLER
 wd 'pshow'
 GSIZE=: glqwh''
 glfill 255 255 255
-while. COUNT<2000 do.
+while. COUNT<('Android'-:UNAME){2000 200 do.
   smupdate''
 end.
 )
