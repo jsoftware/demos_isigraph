@@ -47,7 +47,12 @@ wd ROLLER
 wd 'pshow'
 GSIZE=: glqwh''
 glfill 255 255 255
-while. COUNT<('Android'-:UNAME){2000 200 do.
+wd 'set g timer 100'
+)
+
+roller_g_timer=: 3 : 0
+wd 'set g timer 0'
+while. COUNT<('Android'-:UNAME){2000 1000 do.
   smupdate''
 end.
 )
