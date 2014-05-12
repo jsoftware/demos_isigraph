@@ -50,3 +50,4 @@ spinner.ijs
 spirals.ijs
 title.ijs
 )
+PLATFORMS=: 'linux win darwin android'
