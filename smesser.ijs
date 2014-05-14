@@ -3,6 +3,8 @@ NB. screen messer
 require 'gl2'
 coinsert 'jgl2'
 
+qtmajor=: 0 ". ({.~ i.&'.') '/s' -.~ (}.~ i.&'/') wd 'version'
+
 COUNT=: 0
 SIZE=: 40 40
 DIR=: 1 1
@@ -47,7 +49,13 @@ wd ROLLER
 wd 'pshow'
 GSIZE=: glqwh''
 glfill 255 255 255
-wd 'set g timer 10'
+if. 5=qtmajor do.
+  wd 'set g timer 10'
+else.
+  if. COUNT<('Android'-:UNAME){2000 1000 do.
+    smupdate''
+  end.
+end.
 )
 
 roller_g_timer=: 3 : 0
