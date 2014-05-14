@@ -50,19 +50,10 @@ wd 'pshow'
 GSIZE=: glqwh''
 glfill 255 255 255
 if. 5=qtmajor do.
-  wd 'set g timer 10'
-else.
-  if. COUNT<('Android'-:UNAME){2000 1000 do.
-    smupdate''
-  end.
+  for_i. i.1000 do. wd'msgs' end.  NB. wait for form to display
 end.
-)
-
-roller_g_timer=: 3 : 0
-if. COUNT<('Android'-:UNAME){2000 1000 do.
+while. COUNT<('Android'-:UNAME){2000 1000 do.
   smupdate''
-else.
-  wd 'set g timer 0'
 end.
 )
 
