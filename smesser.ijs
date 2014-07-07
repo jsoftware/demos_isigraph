@@ -14,7 +14,7 @@ COLORS=: ?500 3$255
 
 NB. =========================================================
 ROLLER=: 0 : 0
-pc roller owner;pn "Sreen Roller";
+pc roller owner;pn "Screen Roller";
 cc g isidraw flush;
 set g minwh 400 400;
 pas 0 0;pcenter;
@@ -33,6 +33,7 @@ roller_cancel=: roller_close
 
 NB. =========================================================
 smupdate=: 3 : 0
+wd 'psel roller'
 w=. GSIZE%1000
 COUNT=: >:COUNT
 POS=: POS+DIR*?40 36
