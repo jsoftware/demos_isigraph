@@ -113,6 +113,19 @@ NB. menusep ;
 NB. menu print "&Print" "" "" "";
 
 NB. =========================================================
+adjwh=: 3 : 0
+wh0=. y
+'w h'=. 2}. ". wd 'qform'
+if. (%/wh0) < w%h do.
+NB. fit to h
+  h1=. h [ w1=. h * (%/wh0)
+else.
+  w1=. w [ h1=. w % (%/wh0)
+end.
+wd 'set g wh ',":w1,h1
+)
+
+NB. =========================================================
 isdemo=: 3 : 0
 wd OPENISDEMO
 HWNDP=: wdqhwndp''
@@ -123,6 +136,7 @@ ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 wd 'set M',ISDEMOSEL,' checked "1"'
 wd 'pcenter'
 wd 'pshow'
+adjwh^:('Android'-:UNAME) 398 398
 NB. glsel 'g'
 NB. glpaint`glpaintx@.IFJCDROID''
 )
