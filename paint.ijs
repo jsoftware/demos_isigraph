@@ -49,12 +49,13 @@ paint_g_char=: 3 : 0
 return.
 if. ".text do.
   glfont FONT,' ',":FONTSIZE
+  glfontextent FONT,' ',":FONTSIZE
   if. sysdata=8{a. do.
     'w h'=. glqextent TEXT
     TEXT=: }: TEXT
     new=. {. glqextent TEXT
     glbrush glrgb 255 255 255
-    glpen 1 0
+    glpen 1 1
     glrect (DPOS + new,0),(w-new),h
   else.
     TEXT=: TEXT,sysdata
