@@ -104,7 +104,7 @@ menu MF12S "&Shift F12 Previous" "Shift+F12";
 menusep ;
 menu about "&About";
 menupopz;
-minwh 398 398;cc g isigraph flush;
+minwh 398 398;cc g isidraw flush;
 pas 0 0;
 rem form end;
 )
@@ -139,6 +139,7 @@ wd 'pshow'
 adjwh^:('Android'-:UNAME) 398 398
 NB. glsel 'g'
 NB. glpaint`glpaintx@.IFJCDROID''
+isdemo_run1 ISDEMODAT
 )
 
 NB. =========================================================
@@ -168,10 +169,9 @@ end.
 
 NB. =========================================================
 isdemo_run1=: 3 : 0
-try. wd 'psel isdemo;'
-catch. return. end.
+wd 'psel isdemo;'
 glsel ,'g'
-glnodblbuf 0
+NB. glnodblbuf 0
 gopen''
 0!:100 y
 gshow''
