@@ -18,11 +18,11 @@ HWNDP=: 0
 
 clean=: 13 : 'y * 1e_10 <: |y'
 mp=: +/ .*
-viewbmp=: gshow
+viewimg=: gshow
 
 NB. =========================================================
-NB. getbmp v get current graphics window as bitmap
-getbmp=: 3 : 0
+NB. getimg v get current graphics window as bitmap
+getimg=: 3 : 0
 box=. 0 0,glqwh''
 (3 2 { box) $ glqpixels box
 )
@@ -57,7 +57,7 @@ menu view "&View Definition";
 menusep ;
 menu clip "&Clip";
 menusep ;
-menu savebmp "&Save ~temp/isdemo.bmp";
+menu saveimg "&Save ~temp/isdemo.png";
 menusep ;
 menu print "&Print";
 menusep ;
@@ -187,14 +187,14 @@ NB. =========================================================
 NB. prints to the default printer
 isdemo_print_button=: 3 : 0
 box=. 0 0,glqwh''
-cbmp=. getbmp''
+cimg=. getimg''
 pr=. ,> {.chop wd'qprinters'
 if. 0=#pr do. return. end.
 glzprinter ({.~ i.&':') pr
 dpi=. glzresolution 300
 glzstartdoc ''
 glzscale 2#dpi%96
-glzpixels (96 96 0 0+box),,cbmp
+glzpixels (96 96 0 0+box),,cimg
 glzenddoc''
 )
 
@@ -246,8 +246,8 @@ isdemo_MF12_button=: isdemo_f12_fkey
 isdemo_MF12S_button=: isdemo_f12shift_fkey
 
 NB. =========================================================
-isdemo_savebmp_button=: 3 : 0
-(getbmp'') writebmp jpath '~temp/isdemo.bmp'
+isdemo_saveimg_button=: 3 : 0
+(getimg'') writepng jpath '~temp/isdemo.png'
 )
 
 NB. =========================================================

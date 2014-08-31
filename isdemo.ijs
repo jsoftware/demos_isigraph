@@ -1,6 +1,6 @@
 NB. isdemo.ijs
 
-require 'bmp numeric rgb stats trig general/misc/font'
+require 'png numeric rgb stats trig general/misc/font'
 
 ISDEMOPATH_z_=: jpath '~addons/demos/isigraph/'
 load ISDEMOPATH,'isview.ijs'

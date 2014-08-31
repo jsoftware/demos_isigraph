@@ -2,7 +2,7 @@ NB. Paint Demo
 NB.
 NB. simple paint application
 
-require 'gl2 bmp'
+require 'gl2 png'
 coinsert 'jgl2'
 tolist=: }. @ ; @: (LF&, @ , @ ": each)
 
@@ -14,7 +14,7 @@ PAINT=: 0 : 0
 pc paint owner;pn "Paint Demo";
 menupop "File";
 menusep ;
-menu savebmp "&Save ~temp/paint.bmp";
+menu saveimg "&Save ~temp/paint.png";
 menusep ;
 menu exit "E&xit";
 menupopz;
@@ -137,11 +137,11 @@ end.
 )
 
 NB. =========================================================
-paint_savebmp_button=: 3 : 0
+paint_saveimg_button=: 3 : 0
 glsel 'h'
 box=. 0 0,glqwh''
-bmp=. (3 2 { box) $ glqpixels box
-bmp writebmp jpath '~temp/paint.bmp'
+img=. (3 2 { box) $ glqpixels box
+img writepng jpath '~temp/paint.png'
 )
 
 NB. =========================================================
