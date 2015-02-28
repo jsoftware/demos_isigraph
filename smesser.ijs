@@ -49,7 +49,7 @@ smesser=: 3 : 0
 wd ROLLER
 wd 'pshow'
 GSIZE=: glqwh''
-glfill 255 255 255
+glfill 255 255 255 255
 if. 5=qtmajor do.
   for_i. i.1000 do. wd'msgs' end.  NB. wait for form to display
 end.
