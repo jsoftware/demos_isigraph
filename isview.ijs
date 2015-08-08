@@ -1,10 +1,9 @@
 NB. Isigraph viewer
 
-require 'droidwd viewmat'
+require ' viewmat'
 
 coclass 'jigdemo'
-coinsert 'jgl2 wdbase jisigraph qtprinter'
-droidwd_run=: isdemo
+coinsert 'jgl2 jisigraph qtprinter'
 
 require '~addons/demos/isigraph/iscolor.ijs'
 
@@ -137,8 +136,6 @@ wd 'set M',ISDEMOSEL,' checked "1"'
 wd 'pcenter'
 wd 'pshow'
 adjwh^:('Android'-:UNAME) 398 398
-NB. glsel 'g'
-NB. glpaint`glpaintx@.IFJCDROID''
 isdemo_run1 ISDEMODAT
 )
 
@@ -146,16 +143,16 @@ NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-  if. (-. IFJCDROID) do.
+  if. (-. IFJA) do.
     isdemo_run1 ISDEMODAT
-    glpaint`glpaintx@.IFJCDROID''
+    glpaint`glpaintx@.IFJA''
   else.
-    if. IFJCDROID *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. IFJA *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
       sminfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
     glsel 'g'
-    glpaint`glpaintx@.IFJCDROID''
+    glpaint`glpaintx@.IFJA''
   end.
 end.
 )
@@ -272,7 +269,7 @@ destroy__locVM''
 
 NB. =========================================================
 isdemo_view_button=: 3 : 0
-isedit_run_jigdemoedit_`start_droidwd_jigdemoedit_@.IFJCDROID 'jigdemoedit'
+isedit_run_jigdemoedit_ ''
 NB. isedit_run ISDEMODAT
 )
 

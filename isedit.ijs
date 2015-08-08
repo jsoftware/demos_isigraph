@@ -1,8 +1,7 @@
 NB. edit isigraph definition
 
 coclass 'jigdemoedit'
-coinsert 'jigdemo wdbase'
-droidwd_run=: isedit_run
+coinsert 'jigdemo'
 
 ISEDFONTSZ=: ''
 ISEDTEXT=: ''
@@ -53,7 +52,7 @@ isedit_redisplay_button=: 3 : 0
 if. ISDEMOSEL_jigdemo_-:'PAINT' do.
   sminfo 'J Graphics';'not applicable' return.
 end.
-if. IFJCDROID do.
+if. IFJA do.
   sminfo 'J Graphics';'This demo is for desktop versions only' return.
 end.
 ISEDTEXT=: graf
@@ -61,7 +60,6 @@ try.
   wd 'psel isdemo'
   isdemo_run1_jigdemo_ ISEDTEXT
   ISDEMODAT=: ISEDTEXT
-  glpaint`glpaintx@.IFJCDROID''
   wd 'psel isedit;setfocus graf'
 catch.
   sminfo 'error in graph definition'
