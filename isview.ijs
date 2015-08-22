@@ -7,6 +7,8 @@ coinsert 'jgl2 jisigraph qtprinter'
 
 require '~addons/demos/isigraph/iscolor.ijs'
 
+onCreate=: isdemo
+
 NB. include evolute in-line
 e0=. }: @ (2: # >:@i.)
 e1=. <: @ +: $ _1: , ] , 1: , -
@@ -53,8 +55,6 @@ OPENISDEMO=: 0 : 0
 pc isdemo closeok;pn "J Graphics";
 menupop "&Options";
 menu view "&View Definition";
-menusep ;
-menu clip "&Clip";
 menusep ;
 menu saveimg "&Save ~temp/isdemo.png";
 menusep ;
@@ -108,6 +108,61 @@ pas 0 0;
 rem form end;
 )
 
+OPENISDEMOJA=: 0 : 0
+pc isdemo closeok;pn "J Graphics";
+menupop "&Options";
+menu view "&View Definition";
+menusep ;
+menu saveimg "&Save ~temp/isdemo.png";
+menusep ;
+menu exit "E&xit" "Ctrl+Q";
+menupopz;
+menupop "&Basic";
+menu MTITLE "Isigraph Graphics";
+menusep ;
+menu MEVOLUTE1 "E&volute 1";
+menu MEVOLUTE2 "E&volute 2";
+menupopz;
+menupop "&IFS";
+menupop "&Sierpinski";
+menu MSIERCAR1 "&Carpet 1";
+menu MSIERCAR2 "&Carpet 2";
+menusep ;
+menu MSIERTRI1 "&Triangle 1";
+menu MSIERTRI2 "&Triangle 2";
+menu MSIERTRI3 "&Triangle 3";
+menu MSIERTRI4 "&Triangle 4";
+menupopz;
+menusep ;
+menu MPLASMA1 "&Plasma Cloud 1";
+menu MFRIEZE1 "&Frieze Pattern 1";
+menusep ;
+menu MIFS1 "&IFS1";
+menu MIFS2 "&IFS2";
+menupopz;
+menupop "&Shapes";
+menu MKOCH "&Koch";
+menu MPOLYGON "&Polygon";
+menu MSPIRALS "&Spirals";
+menu MPOWER "&Power";
+menu MSINES "&Sines";
+menupopz;
+menupop "&Extras";
+menu MPAINT "&Paint";
+menusep ;
+menu MSMESSER "&Screen Roller";
+menupopz;
+menupop "&Help";
+menu MF12 "&F12 Next" "F12";
+menu MF12S "&Shift F12 Previous" "Shift+F12";
+menusep ;
+menu about "&About";
+menupopz;
+wh _1 _1;cc g isidraw flush;
+pas 0 0;
+rem form end;
+)
+
 NB. menusep ;
 NB. menu print "&Print" "" "" "";
 
@@ -126,17 +181,24 @@ wd 'set g wh ',":w1,h1
 
 NB. =========================================================
 isdemo=: 3 : 0
-wd OPENISDEMO
+wd IFJA{::OPENISDEMO;OPENISDEMOJA
 HWNDP=: wdqhwndp''
-NB.wd 'setenable clip ',":-.IFUNIX
-wd 'setenable clip 0'
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
-wd 'set M',ISDEMOSEL,' checked "1"'
 wd 'pcenter'
 wd 'pshow'
-adjwh^:('Android'-:UNAME) 398 398
+if. IFJA do. return. end.
+wd 'set M',ISDEMOSEL,' checked "1"'
+NB. adjwh^:('Android'-:UNAME) 398 398
 isdemo_run1 ISDEMODAT
+glpaint''
+)
+
+NB. =========================================================
+NB. jandroid initial display
+isdemo_g_resize=: 3 : 0
+isdemo_run1 ISDEMODAT
+glpaint''
 )
 
 NB. =========================================================
@@ -145,14 +207,15 @@ if. wdisparent 'isdemo' do.
   ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
   if. (-. IFJA) do.
     isdemo_run1 ISDEMODAT
-    glpaint`glpaintx@.IFJA''
+    glpaint''
   else.
     if. IFJA *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
-      sminfo 'J Graphics';'This demo is for desktop versions only'
+      wdinfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
     glsel 'g'
-    glpaint`glpaintx@.IFJA''
+    isdemo_run1 ISDEMODAT
+    glpaint''
   end.
 end.
 )
@@ -193,24 +256,6 @@ glzstartdoc ''
 glzscale 2#dpi%96
 glzpixels (96 96 0 0+box),,cimg
 glzenddoc''
-)
-
-NB. =========================================================
-NB. following works only in Win32, need to make this
-isdemo_clip_button=: 3 : 0
-sminfo 'Save graphics to clipboard is not yet supported.'
-return.
-if. -. IFWIN do.
-  sminfo 'Save graphics to clipboard is only available in Windows'
-  return.
-end.
-f=. jpath '~temp/isdemo.emf'
-glfile f
-glemfopen''
-isdemo_g_paint''
-glemfclose''
-wd 'clipcopy *',freads f
-1!:55 <f
 )
 
 NB. =========================================================
