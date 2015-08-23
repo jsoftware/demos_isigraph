@@ -24,6 +24,10 @@ rem form end;
 NB. argument is definition
 isedit_run=: 3 : 0
 y=. ISDEMODAT_jigdemo_
+if. IFJA do.
+  textview 'isigraph';y
+  return.
+end.
 if. 0=#ISEDFONTSZ do.
   getfontsize=. 13 : '{.1{._1 -.~ _1 ". y'
   ISEDFONT=: FIXFONT
