@@ -7,7 +7,7 @@ coinsert 'jgl2 jisigraph qtprinter'
 
 require '~addons/demos/isigraph/iscolor.ijs'
 
-onCreate=: isdemo
+onStart=: isdemo
 
 NB. include evolute in-line
 e0=. }: @ (2: # >:@i.)
