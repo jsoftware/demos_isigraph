@@ -12,5 +12,4 @@ clr=. 255 <. 128 * 1 + (sin ,. cos,. sin @ -:) X%10
 glmark''
 gback 255 255 255
 pos fn"1 clr
-glpaint''
-gltrash''
+glcmds@gltrash''
