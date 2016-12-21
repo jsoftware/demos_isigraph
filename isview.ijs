@@ -5,7 +5,7 @@ require ' viewmat'
 coclass 'jigdemo'
 coinsert 'jgl2 jisigraph qtprinter'
 
-require '~addons/demos/isigraph/iscolor.ijs'
+load '~addons/demos/isigraph/iscolor.ijs'
 
 onStart=: isdemo
 
@@ -52,7 +52,7 @@ isdemo_g_mbldown
 
 NB. =========================================================
 OPENISDEMO=: 0 : 0
-pc isdemo closeok;pn "J Graphics";
+pc isdemo;pn "J Graphics";
 menupop "&Options";
 menu view "&View Definition";
 menusep ;
@@ -109,7 +109,7 @@ rem form end;
 )
 
 OPENISDEMOJA=: 0 : 0
-pc isdemo closeok;pn "J Graphics";
+pc isdemo;pn "J Graphics";
 menupop "&Options";
 menu view "&View Definition";
 menusep ;
@@ -310,6 +310,7 @@ isdemo_exit_button=: 3 : 0
 try. wd^:('Android'-.@-:UNAME) 'psel paint;pclose;' catch. end.
 try. wd 'psel isdemo;pclose;' catch. end.
 destroy__locVM''
+codestroy''
 )
 
 NB. =========================================================
