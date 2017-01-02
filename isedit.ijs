@@ -21,6 +21,17 @@ pas 0 0;
 rem form end;
 )
 
+ISEDITJN=: 0 : 0
+pc6j isedit closeok;
+xywh 0 0 17 10;cc minus button;cn "&<<";
+xywh 16 0 17 10;cc plus button;cn "&>>";
+xywh 131 0 34 10;cc redisplay button leftmove rightmove;cn "&Redisplay";
+xywh 165 0 34 10;cc cancel button leftmove rightmove;cn "&Cancel";
+xywh 0 9 200 100;cc graf editm ws_vscroll rightmove bottommove;
+pas 0 0;
+rem form end;
+)
+
 NB. argument is definition
 isedit_run=: 3 : 0
 y=. ISDEMODAT_jigdemo_
@@ -36,10 +47,10 @@ end.
 if. wdisparent 'isedit' do.
   wd 'psel isedit'
 else.
-  wd ISEDIT
+  wd (1 i.~ IFQT,IFJA){::ISEDIT;ISEDIT;ISEDITJN
   wd 'setfont graf ',ISEDFONT
 end.
-wd 'set graf text *',y
+wd 'set graf ',((IFQT+.IFJA)#'text '),'*',y
 wd 'setfocus graf'
 wd 'pshow'
 )

@@ -163,33 +163,94 @@ pas 0 0;
 rem form end;
 )
 
+OPENISDEMOJN=: 0 : 0
+pc6j isdemo;pn "J Graphics";
+menupop "&Options";
+menu view "&View Definition";
+menusep ;
+menu saveimg "&Save ~temp/isdemo.png";
+menusep ;
+menu print "&Print";
+menusep ;
+menu exit "E&xit" "Ctrl+Q";
+menupopz;
+menupop "&Basic";
+menu MTITLE "Isigraph Graphics";
+menusep ;
+menu MEVOLUTE1 "E&volute 1";
+menu MEVOLUTE2 "E&volute 2";
+menupopz;
+menupop "&IFS";
+menupop "&Sierpinski";
+menu MSIERCAR1 "&Carpet 1";
+menu MSIERCAR2 "&Carpet 2";
+menusep ;
+menu MSIERTRI1 "&Triangle 1";
+menu MSIERTRI2 "&Triangle 2";
+menu MSIERTRI3 "&Triangle 3";
+menu MSIERTRI4 "&Triangle 4";
+menupopz;
+menusep ;
+menu MPLASMA1 "&Plasma Cloud 1";
+menu MFRIEZE1 "&Frieze Pattern 1";
+menusep ;
+menu MIFS1 "&IFS1";
+menu MIFS2 "&IFS2";
+menupopz;
+menupop "&Shapes";
+menu MKOCH "&Koch";
+menu MPOLYGON "&Polygon";
+menu MSPIRALS "&Spirals";
+menu MPOWER "&Power";
+menu MSINES "&Sines";
+menupopz;
+menupop "&Extras";
+menu MPAINT "&Paint";
+menusep ;
+menu MSMESSER "&Screen Roller";
+menupopz;
+menupop "&Help";
+menu MF12 "&F12 Next" "F12";
+menu MF12S "&Shift F12 Previous" "Shift+F12";
+menusep ;
+menu about "&About";
+menupopz;
+xywh 0 0 220 200;cc g isigraph;
+pas 0 0;
+rem form end;
+)
+
 NB. menusep ;
 NB. menu print "&Print" "" "" "";
 
 NB. =========================================================
 adjwh=: 3 : 0
 wh0=. y
-'w h'=. 2}. ". wd 'qform'
+'w h'=. 2}. ". wd 'qform',((-.IFQT+.IFJA)#'x')
 if. (%/wh0) < w%h do.
 NB. fit to h
   h1=. h [ w1=. h * (%/wh0)
 else.
   w1=. w [ h1=. w % (%/wh0)
 end.
-wd 'set g wh ',":w1,h1
+if. IFQT+.IFJA do.
+  wd 'set g wh ',":w1,h1
+else.
+  wd 'setxywhx g ',":0 0,w1,h1
+end.
 )
 
 NB. =========================================================
 isdemo=: 3 : 0
-wd IFJA{::OPENISDEMO;OPENISDEMOJA
+wd (1 i.~ IFQT,IFJA){::OPENISDEMO;OPENISDEMOJA;OPENISDEMOJN
 HWNDP=: wdqhwndp''
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 wd 'pcenter'
 wd 'pshow'
 if. IFJA do. return. end.
-wd 'set M',ISDEMOSEL,' checked "1"'
-NB. adjwh^:('Android'-:UNAME) 398 398
+wd 'set M',ISDEMOSEL,((IFQT+.IFJA)#' checked'),' 1'
+adjwh 398 398
 isdemo_run1 ISDEMODAT
 glpaint''
 )
@@ -204,7 +265,11 @@ glpaint''
 NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
-  ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  if. (-.IFQT+.IFJA) *. (<ISDEMOSEL) e. ;:'PAINT POLYHEDR SMESSER ' do.
+    ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'jn.ijs'
+  else.
+    ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  end.
   if. (-. IFJA) do.
     isdemo_run1 ISDEMODAT
     glpaint''
@@ -294,7 +359,7 @@ isdemo_saveimg_button=: 3 : 0
 
 NB. =========================================================
 isdemo_showname=: 3 : 0
-wd 'set M',ISDEMOSEL,' checked "0"'
+wd 'set M',ISDEMOSEL,((IFQT+.IFJA)#' checked'),' 0'
 ISDEMOSELOLD=: ISDEMOSEL
 ISDEMOSEL=: y
 ISTYPE=: ISDEMOTYPE {~ ISDEMONAMES i. <y
