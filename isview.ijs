@@ -265,7 +265,7 @@ glpaint''
 NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
-  if. (-.IFQT+.IFJA) *. (<ISDEMOSEL) e. ;:'PAINT POLYHEDR SMESSER ' do.
+  if. (-.IFQT) *. (<ISDEMOSEL) e. ;:'PAINT POLYHEDR SMESSER ' do.
     ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'jn.ijs'
   else.
     ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
@@ -274,7 +274,7 @@ if. wdisparent 'isdemo' do.
     isdemo_run1 ISDEMODAT
     glpaint''
   else.
-    if. IFJA *. (<ISDEMOSEL) e. ;:'PAINT SMESSER ' do.
+    if. IFJA *. (<ISDEMOSEL) e. ;:'PAINT ' do.
       wdinfo 'J Graphics';'This demo is for desktop versions only'
       return.
     end.
@@ -290,6 +290,7 @@ isdemo_g_paint=: 3 : 0
 if. (<ISDEMOSEL) -.@e. ;:'PAINT SMESSER ' do.
   isdemo_run1 ISDEMODAT
 end.
+glpaintx^:IFJA ''   NB. asyncj
 )
 
 NB. =========================================================

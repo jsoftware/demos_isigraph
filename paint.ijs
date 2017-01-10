@@ -41,7 +41,7 @@ end.
 wd PAINT
 wd 'set g minwh 600 350'
 wd 'pshow'
-glpaint '' [ glfill 255 255 255 255
+glpaint '' [ glfill ::0: 255 255 255 255
 )
 
 NB. =========================================================
