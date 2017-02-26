@@ -11,7 +11,7 @@ Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
 )
 
-VERSION=: '1.0.67'
+VERSION=: '1.0.68'
 
 RELEASE=: 'j804 j805'
 
@@ -24,6 +24,8 @@ FILES=: 0 : 0
 evolute1.ijs
 evolute2.ijs
 frieze1.ijs
+graphmain.ijs
+graphutil.ijs
 ifs1.ijs
 ifs2.ijs
 iscolor.ijs
