@@ -54,6 +54,7 @@ else.
 
 end.
 wd p
+if. IFJNET do. glnodblbuf 0 end.
 wdfit''
 wd 'set freehand ',freehand=: '1'
 paint_clear_button''

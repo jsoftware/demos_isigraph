@@ -244,6 +244,7 @@ NB. =========================================================
 isdemo=: 3 : 0
 wd (1 i.~ IFQT,IFJA){::OPENISDEMO;OPENISDEMOJA;OPENISDEMOJN
 HWNDP=: wdqhwndp''
+if. IFJNET do. glnodblbuf 0 end.
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
 ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
 wd 'pcenter'
