@@ -11,9 +11,9 @@ Many of these examples (in particular the ifs examples) are
 based on work done by Clifford Reiter.
 )
 
-VERSION=: '1.0.70'
+VERSION=: '1.0.71'
 
-RELEASE=: 'j804 j805 j806'
+RELEASE=: 'j804 j805 j806 j807'
 
 DEPENDS=: 0 : 0
 graphics/gl2
