@@ -5,7 +5,7 @@ NB. try also:  - + * +.
 
 fn=: !
 
-step=: 1 : ',"2 @ (,/) @ (0 2 1 3&|:) @ (x/~)'
+step=: 1 : ',"2 @ (,/) @ (0 2 1 3&|:) @ (u/~)'
 times3=: ^: 3
 X=: 2 1 ,: 2 2
 vmat fn step times3 X
