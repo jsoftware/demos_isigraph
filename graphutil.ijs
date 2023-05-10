@@ -80,7 +80,7 @@ d=. <: +: x fit01 (x,x+w) ,. y,y+h
 s $ , x,.y,.(xw-x),.yh-y
 )
 
-NB. ========================================================
+NB. =========================================================
 NB.*hue v generate color from color set
 NB. x is color set
 NB. y is values from 0 to 1, selecting color
@@ -92,7 +92,7 @@ k=. y-<.y
 (t*k)+b*-.k
 )
 
-NB. ========================================================
+NB. =========================================================
 NB.*hueRGB v generate color from RGB color se
 NB. x is RGB color set (default HUES)
 NB. y is values from 0 to 1, selecting color
@@ -100,7 +100,7 @@ hueRGB=: (HUES&$:) : (4 : 0)
 <. 0.5 + x hue y
 )
 
-NB. ========================================================
+NB. =========================================================
 NB.*polygon v vertices of a regular polygon
 NB. y = number of points
 NB. x = scale factor on angle 2p1%y  (default 1)
@@ -109,7 +109,7 @@ NB. e.g.   polygon 5 = pentagon
 NB.      2 polygon 5 = 5 pointed star
 polygon=: 1&$: : (4 : '|: clean 2 1 o./ (2p1*x%y)*i.>:y')
 
-NB. ========================================================
+NB. =========================================================
 NB.*rotate v rotate angle by given amount
 NB.
 NB. e.g. 0.5p1 rotate points = rotate clockwise a quarter turn

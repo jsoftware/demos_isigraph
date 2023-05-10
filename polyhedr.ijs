@@ -48,11 +48,15 @@ VP=: 50
 
 POLY=: 0 : 0
 pc Poly closeok;pn "Polly Hedron";
+menupop "&File";
+menu quit "&Quit" "Ctrl+Q" "" "";
+menupopz;
 minwh 150 150;cc g0 isidraw flush;
 minwh 150 10; cc s0 slider;set s0 0 50 100 4;
 minwh 10 150; cc s1 slider v;set s1 0 50 100 4;
 pas 0 0;pcenter;pshow
 )
+Poly_quit_button=: wd bind 'pclose'
 
 Poly_s0_button=: phs
 Poly_s1_button=: pvs

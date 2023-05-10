@@ -78,11 +78,15 @@ if. (<c) e. <;._2 wd 'qp;' do.
   glclear_jgl2_''
 else.
   wd 'pc ',c,' closeok;pn *',n
+  wd 'menupop "&File";'
+  wd 'menu quit "&Quit" "Ctrl+Q" "" "";'
+  wd 'menupopz;'
   wd 'xywh 0 0 150 150;cc g0 isigraph rightmove bottommove'
   wd 'pas 0 0;pcenter'
   fx=. 0 ". wd 'qformx'
   wd 'pmove 150 5 ',": 2 }. fx
   wd 'pshow;'
+  (c,'_quit_button')=: wd bind 'pclose'
 end.
 )
 

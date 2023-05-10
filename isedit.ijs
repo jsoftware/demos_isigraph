@@ -7,7 +7,10 @@ ISEDFONTSZ=: ''
 ISEDTEXT=: ''
 
 ISEDIT=: 0 : 0
-pc isedit closeok;
+pc isedit;
+menupop "&File";
+menu quit "&Quit" "Ctrl+Q" "" "";
+menupopz;
 bin vh;
 cc minus button;cn "&<<";
 cc plus button;cn "&>>";
@@ -20,9 +23,13 @@ bin z;
 pas 0 0;
 rem form end;
 )
+isedit_quit_button=: isedit_close
 
 ISEDITJN=: 0 : 0
-pc6j isedit closeok;
+pc6j isedit;
+menupop "&File";
+menu quit "&Quit" "Ctrl+Q" "" "";
+menupopz;
 xywh 0 0 17 10;cc minus button;cn "&<<";
 xywh 16 0 17 10;cc plus button;cn "&>>";
 xywh 131 0 34 10;cc redisplay button leftmove rightmove;cn "&Redisplay";

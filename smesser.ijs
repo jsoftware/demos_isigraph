@@ -15,10 +15,14 @@ COLORS=: ?500 3$255
 NB. =========================================================
 ROLLER=: 0 : 0
 pc roller owner;pn "Screen Roller";
+menupop "&File";
+menu quit "&Quit" "Ctrl+Q" "" "";
+menupopz;
 cc g isidraw flush;
 set g minwh 400 400;
 pas 0 0;pcenter;
 )
+roller_quit_button=: roller_close
 
 NB. =========================================================
 roller_close=: 3 : 0
