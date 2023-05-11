@@ -103,12 +103,12 @@ wd 'setfont graf ',":ISEDFONT
 
 isedit_rctrl_fkey=: 3 : 0
 if. 0= wdquery`0:@.('Android'-:UNAME) 'isedit';'OK to recover definition?' do.
-  wd 'set graf *',freads tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  wd 'set graf *',freads ISDEMOPATH,tolower ISDEMOSEL,'.ijs'
 end.
 )
 
 isedit_sctrl_fkey=: 3 : 0
 if. 0= wdquery`0:@.('Android'-:UNAME) 'isedit';'OK to save definition?' do.
-  graf fwrites tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+  graf fwrites ISDEMOPATH,tolower ISDEMOSEL,'.ijs'
 end.
 )

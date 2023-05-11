@@ -245,7 +245,7 @@ isdemo=: 3 : 0
 wd (1 i.~ IFQT,IFJA){::OPENISDEMO;OPENISDEMOJA;OPENISDEMOJN
 HWNDP=: wdqhwndp''
 ISDEMOSEL=: ISDEMOSEL,(0=#ISDEMOSEL)#'TITLE'
-ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+ISDEMODAT=: fread ISDEMOPATH,tolower ISDEMOSEL,'.ijs'
 wd 'pcenter'
 wd 'pshow'
 if. IFJA do. return. end.
@@ -266,9 +266,9 @@ NB. =========================================================
 isdemo_run=: 3 : 0
 if. wdisparent 'isdemo' do.
   if. (-.IFQT) *. (<ISDEMOSEL) e. ;:'PAINT POLYHEDR SMESSER ' do.
-    ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'jn.ijs'
+    ISDEMODAT=: fread ISDEMOPATH,tolower ISDEMOSEL,'jn.ijs'
   else.
-    ISDEMODAT=: fread tolower ISDEMOPATH,ISDEMOSEL,'.ijs'
+    ISDEMODAT=: fread ISDEMOPATH,tolower ISDEMOSEL,'.ijs'
   end.
   if. (-. IFJA) do.
     isdemo_run1 ISDEMODAT
