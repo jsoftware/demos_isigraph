@@ -372,7 +372,7 @@ isdemo_run''
 
 NB. =========================================================
 isdemo_exit_button=: 3 : 0
-try. wd^:('Android'-.@-:UNAME) 'psel paint;pclose;' catch. end.
+try. wd^:(-.IFJA) 'psel paint;pclose;' catch. end.
 try. wd 'psel isdemo;pclose;' catch. end.
 destroy__locVM''
 codestroy''

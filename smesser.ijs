@@ -57,7 +57,7 @@ glfill 255 255 255 255
 if. 5=qtmajor do.
   for_i. i.1000 do. wd'msgs' end.  NB. wait for form to display
 end.
-while. COUNT<('Android'-:UNAME){2000 1000 do.
+while. COUNT<IFJA{2000 1000 do.
   smupdate''
 end.
 )
