@@ -5,7 +5,7 @@ NB.
 NB. experiment with different values for f
 
 f=. ]            NB. shows evolute
-f=. # @ q:       NB. count (of prime factors)
-f=. (1:=#) @ q:  NB. 1 if prime
+f=. # @ q:"0       NB. count (of prime factors)
+f=. (1:=#) @ q:"0  NB. 1 if prime
 
 vmat f 1+evolute 183
